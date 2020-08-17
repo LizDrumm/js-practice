@@ -15,6 +15,13 @@ rating
 
 */
 
+const restaurant={
+    name:'Carmo',
+    cuisine_type:'Cajun',
+    city:'New Orleans',
+    rating:5,
+}
+
 // Task 2
 
 /* 
@@ -22,11 +29,10 @@ Create a function called 'getName' that accepts an object as a parameter
 and returns the name of the restaurant
 */
 
-function getName(/* code here */){
-
-    /* code here */
-
+function getName(object){
+return object.name;
 }
+console.log(getName(restaurant));
 
 /* Uncomment the console.log() to check your work */
 // console.log(getName(restaurant))
@@ -48,10 +54,15 @@ let bestRestaurant = {
     city: 'Salt Lake City'
 }
 
+bestRestaurant.owner= 'Gordon Ramsey'
+bestRestaurant.cuisine_type= 'American'
+bestRestaurant.name = 'Zest Kitchen'
+
+
 /* Uncomment the console.log() to check your work */
-// console.log(bestResturant.owner) // 'Gordon Ramsey'
-// console.log(bestRestaurant.cuisine_type) // 'American'
-// console.log(bestRestaurant.city) // 'American'
+ console.log(bestRestaurant.owner) // 'Gordon Ramsey'
+ console.log(bestRestaurant.cuisine_type) // 'American'
+ console.log(bestRestaurant.city) // 'American'
 
 // Task 4
 
@@ -88,16 +99,20 @@ let curryHouse = {
     city: 'Phoenix'
 }
 
-function whereToEat(/* code here */){
-
-    /* code here */
+function whereToEat(object,type){
+    if (object.cuisine_type=== type){
+        return `Just made reservations at ${object.name}`
+    }
+    else {
+        return `Looks like I'll be cooking tonight`
+    }
 }
 
 
 /* Uncomment the console.log() to check your work */
-// console.log(whereToEat(shabu, 'Mexican')) // `Looks like I'll be cooking tonight`
-// console.log(whereToEat(curryHouse, 'Indian')) // `Just made reservations at Bombay House`
-// console.log(whereToEat(alberto, 'Mexican')) // Just made reservations at Casa de Alberto`
+ console.log(whereToEat(shabu, 'Mexican')) // `Looks like I'll be cooking tonight`
+ console.log(whereToEat(curryHouse, 'Indian')) // `Just made reservations at Bombay House`
+console.log(whereToEat(alberto, 'Mexican')) // Just made reservations at Casa de Alberto`
 
 
 
@@ -141,16 +156,18 @@ Create a function 'getPlayerById' which takes in two arguments
 This function should then return the following string `${name} is a ${position} for the ${team}`
 */
 
-function getPlayerById(/* code here */){
-
-    /* code here */
-
+function getPlayerById(arr,id){
+ for (let i=0; i < arr.length; i++){
+     if (arr[i].id === id){
+         return `${arr[i].name} is a ${arr[i].position} for the ${arr[i].team}`
+     }
+ }
 }
 
 /* Uncomment the console.log() to check your work */
-// console.log(getPlayerById(players, 16)) // `Jimmy Butler is a SG for the Heat`
-// console.log(getPlayerById(players, 1)) // `Kobe Bryant is a SG for the Lakers`
-// console.log(getPlayerById(players, 9)) // `Patrick Ewing is a C for the Knicks`
+console.log(getPlayerById(players, 16)) // `Jimmy Butler is a SG for the Heat`
+ console.log(getPlayerById(players, 1)) // `Kobe Bryant is a SG for the Lakers`
+console.log(getPlayerById(players, 9)) // `Patrick Ewing is a C for the Knicks`
 
 
 // Taks 2 
@@ -163,8 +180,19 @@ Create a function `getPlayersByTeam` that takes in two arguments
 The function should return a new array with the names of the players for that team
 */
 
+function getPlayersByTeam(arr,team){
+    let newArr= []
+
+    for (let i=0; i< arr.lenght; i++){
+       if (arr[i].team.includes(team)){
+        newArr.push(arr[i].name)
+    }
+}
+return newArr
+}
+
 /* Uncomment the console.log() to check your work */
-// console.log(getPlayersByTeam(players, 'Lakers')) // ['Kobe Bryant', 'Lebron James', 'Shaq Oneal', 'Magic Johnson']
+console.log(getPlayersByTeam(players, 'Lakers')) // ['Kobe Bryant', 'Lebron James', 'Shaq Oneal', 'Magic Johnson']
 //console.log(getPlayersByTeam(players, 'Spurs')) // []
 
 // Task 3 
@@ -172,6 +200,9 @@ The function should return a new array with the names of the players for that te
 /* 
 The player with id 7, Kawhi Leonard, has been traded from the 'Clippers' to the 'Magic'. Use an array method to update his team. Use console.log() to check your work
 */
+
+players[6].team = 'Magic'
+
 
 // Task 4 
 
@@ -184,11 +215,26 @@ Create a function 'getPlayersByDraft' that takes in three arguments.
 This function should return the number of players drafted within those years
 */
 
+/*function getPlayersByDraft (arr, min, max){
+    let counter = 0
+    //check if first number in years active falls withing range 
+    for (let i=0; i <arr.length; i++){
+        let draftYear = +arr[i].years_active.slice(0,4)//+converts years to number from string!
+    
+    if (draftYear >=min && draftYear <=max){
+        counter+=1
+    }
+}
+return counter
+
+}
+
+
 
 /* Uncomment the console.log() to check your work */
-// console.log(getPlayersByDraft(players, 1994, 2005)) // 2
-// console.log(getPlayersByDraft(players, 1951, 1991)) // 7
-// console.log(getPlayersByDraft(players, 2008, 2012)) // 5 
+ //console.log(getPlayersByDraft(players, 1994, 2005)) // 2
+ //console.log(getPlayersByDraft(players, 1951, 1991)) // 7
+ //console.log(getPlayersByDraft(players, 2008, 2012)) // 5 
 
 // Task 5
 
@@ -197,6 +243,13 @@ Create a function 'addNewPlayer' that takes in
 an array of players and a player object. 
 This function should add the player to the end of the array
 */
+
+
+/*function addNewPlayer(array, object){
+    arr.push (obj)
+}
+return array;
+}
 
 // Task 6 
 
@@ -207,7 +260,7 @@ to add 'anthony' to the beginning of the array. Use
 console.log to check your work
 */
 
-let anthony = {
+/*let anthony = {
     id: 0,
     name: 'Anthony Davis',
     team: 'Lakers',
@@ -215,6 +268,8 @@ let anthony = {
     status: 'active',
     years_active: '2012 - 2020'
 }
+
+players.unshift(anthony)
 
 // Task 7 
 
@@ -224,7 +279,15 @@ create a function called `removePlayer` that takes in two arguments
 2. the index of a player
 
 This function should remove the player at the given index from the array
+
 */
+
+/*function removePlayer (arr, index){
+    arr.splice[index,1]
+    return arr
+}
+
+console.log (removePlayer(players,2));
 
 /* 
 STRETCH GOAL 
@@ -235,3 +298,9 @@ create a function called `removePlayerById` that takes in two arguments
 
 This function should remove the player with the given id from the array
 */ 
+
+
+
+
+
+
